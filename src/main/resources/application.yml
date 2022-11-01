@@ -1,0 +1,23 @@
+info:
+  app:
+    description: patient-log-service
+    java-vendor: ${java.specification.vendor}
+
+spring:
+  application:
+    name: patient-log-api
+
+  liquibase:
+    change-log: classpath:/changelog/db.changelog-master.xml
+    contexts: default
+    drop-first: false
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}/${DATABASE_NAME:patient_log_service}
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:root}
+server:
+  servlet:
+    context-path: /patient-log
+  port: ${SERVER_PORT:8084}
