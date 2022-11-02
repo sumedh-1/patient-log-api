@@ -25,12 +25,21 @@ class AuthController(private val userService: UserService) {
 
     @PostMapping("/register")
     fun registerUser(@RequestBody body: RegisterDto): ResponseEntity<User> {
-        val user = User()
-        user.name = body.name
-        user.email = body.email
-        user.password = body.password
-        user.userType = UserType.valueOf(body.userType).name
+        val user = UserService.convertToModelUser(body)
         return ResponseEntity.ok(this.userService.save(user))
+    }
+
+    @PostMapping("/register-all")
+    fun registerAllUser(@RequestBody body: List<RegisterDto>): ResponseEntity<Any> {
+        return ResponseEntity.ok(
+            Message(
+                String.format(
+                    "successfully registered %d of %d",
+                    this.userService.saveAll(body.map { UserService.convertToModelUser(it) }.toList()).size,
+                    body.size
+                )
+            )
+        )
     }
 
     @PostMapping("/login")
