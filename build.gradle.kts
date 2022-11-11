@@ -31,12 +31,16 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.liquibase:liquibase-core")
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
+	implementation("ca.uhn.hapi.fhir:hapi-fhir-base:6.1.3")
+	implementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r5:6.1.3")
+	implementation("ca.uhn.hapi.fhir:hapi-fhir-jpaserver-base:6.1.3")
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+	runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<KotlinCompile> {

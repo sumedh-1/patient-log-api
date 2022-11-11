@@ -6,6 +6,8 @@ info:
 spring:
   application:
     name: patient-log-api
+  flyway:
+    baseline-on-migrate: true
 
   liquibase:
     change-log: classpath:/changelog/db.changelog-master.xml
@@ -20,4 +22,4 @@ spring:
 server:
   servlet:
     context-path: /patient-log
-  port: ${SERVER_PORT:8084}
+  port: ${SERVER_PORT:8085}
